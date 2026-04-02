@@ -8,4 +8,5 @@ add_executable(FileSystem bloques.c
         mi_mkfs.c
         ficheros_basico.c
         ficheros_basico.h
-        leer_sf.c)
+        leer_sf.c
+)

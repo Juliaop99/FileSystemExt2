@@ -1,15 +1,13 @@
-#include "bloques.h"
+#ifndef FICHEROS_BASICOS_H
+#define FICHEROS_BASICOS_H
+
+#include <time.h>
 #include <limits.h>
+#include "bloques.h"
 
 #define posSB 0 // el superbloque se escribe en el primer bloque de nuestro FS
 #define tamSB 1
 #define INODOSIZE 128 // tamaño en bytes de un inodo
-
-int tamMB (unsigned int nbloques);
-int tamAI (unsigned int ninodos);
-int initSB(unsigned int nbloques, unsigned int ninodos);
-int initMB();
-int initAI();
 
 //Funciones auxiliares
 int resto (unsigned int num_bits);
@@ -68,3 +66,18 @@ struct inodo {     // comprobar que ocupa 128 bytes haciendo un sizeof(inodo)!!!
     char padding[INODOSIZE - 2 * sizeof(unsigned char) - 4 * sizeof(time_t) - 18 * sizeof(unsigned int) - 6 * sizeof(unsigned char)];
     // Fijarse que también se resta lo que ocupen las variables de alineación utilizadas!!!
 };
+
+unsigned int tamMB (unsigned int nbloques);
+unsigned int tamAI (unsigned int ninodos);
+int initSB(unsigned int nbloques, unsigned int ninodos);
+int initMB();
+int initAI();
+int escribir_bit(unsigned int nbloque, unsigned int bit);
+char leer_bit(unsigned int nbloque);
+int reservar_bloque();
+unsigned int liberar_bloque(unsigned int nbloque);
+int escribir_inodo(unsigned int ninodo, struct inodo *inodo);
+int leer_inodo(unsigned int ninodo, struct inodo *inodo);
+unsigned int reservar_inodo(unsigned char tipo, unsigned char permisos);
+
+#endif

@@ -23,7 +23,7 @@ int bumount(const char *camino) {
 }
 
 int bwrite(unsigned int nbloque, const void *buf) {
-    //Escribe 1 bloque en e1 dispositivo virtual, primero  se posiciona con lseek y luego escribe
+    //Escribe 1 bloque en e1 dispositivo virtual, primero se posiciona con lseek y luego escribe
     int offset = nbloque * BLOCKSIZE;
     if (lseek(fd, offset, SEEK_SET) == -1) {
     	return -1;
